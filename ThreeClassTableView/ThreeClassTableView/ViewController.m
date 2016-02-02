@@ -7,21 +7,28 @@
 //
 
 #import "ViewController.h"
+#import "WPAssociationMenuView.h"
+@interface ViewController ()<WPAssociationMenuViewDelegate>
 
-@interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *button;
 
+@property (nonatomic, strong)WPAssociationMenuView *menuView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.menuView = [[WPAssociationMenuView alloc]init];
+    self.menuView.delegate = self;
+    self.menuView.transformView = self.button.imageView;
+    self.menuView.frame = CGRectMake(0, 0, self.view.frame.size.width, 300);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
+- (IBAction)clickBtnShowMenu:(UIButton *)sender {
+    
+    [self.menuView showMenuAsDrawDownView:sender];
+    
+}
 @end

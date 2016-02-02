@@ -15,6 +15,7 @@
 		AA0CCC671C60F130002651EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA0CCC651C60F130002651EA /* LaunchScreen.storyboard */; };
 		AA0CCC721C60F130002651EA /* ThreeClassTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0CCC711C60F130002651EA /* ThreeClassTableViewTests.m */; };
 		AA0CCC7D1C60F131002651EA /* ThreeClassTableViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0CCC7C1C60F131002651EA /* ThreeClassTableViewUITests.m */; };
+		AA0CCC8D1C60F8CF002651EA /* WPAssociationMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0CCC8C1C60F8CF002651EA /* WPAssociationMenuView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		AA0CCC781C60F131002651EA /* ThreeClassTableViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThreeClassTableViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0CCC7C1C60F131002651EA /* ThreeClassTableViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreeClassTableViewUITests.m; sourceTree = "<group>"; };
 		AA0CCC7E1C60F131002651EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA0CCC8B1C60F8CF002651EA /* WPAssociationMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAssociationMenuView.h; sourceTree = "<group>"; };
+		AA0CCC8C1C60F8CF002651EA /* WPAssociationMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAssociationMenuView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		AA0CCC561C60F130002651EA /* ThreeClassTableView */ = {
 			isa = PBXGroup;
 			children = (
+				AA0CCC8A1C60F89E002651EA /* AssciationMenuVIew */,
 				AA0CCC5A1C60F130002651EA /* AppDelegate.h */,
 				AA0CCC5B1C60F130002651EA /* AppDelegate.m */,
 				AA0CCC5D1C60F130002651EA /* ViewController.h */,
@@ -138,6 +142,15 @@
 				AA0CCC7E1C60F131002651EA /* Info.plist */,
 			);
 			path = ThreeClassTableViewUITests;
+			sourceTree = "<group>";
+		};
+		AA0CCC8A1C60F89E002651EA /* AssciationMenuVIew */ = {
+			isa = PBXGroup;
+			children = (
+				AA0CCC8B1C60F8CF002651EA /* WPAssociationMenuView.h */,
+				AA0CCC8C1C60F8CF002651EA /* WPAssociationMenuView.m */,
+			);
+			path = AssciationMenuVIew;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +285,7 @@
 			files = (
 				AA0CCC5F1C60F130002651EA /* ViewController.m in Sources */,
 				AA0CCC5C1C60F130002651EA /* AppDelegate.m in Sources */,
+				AA0CCC8D1C60F8CF002651EA /* WPAssociationMenuView.m in Sources */,
 				AA0CCC591C60F130002651EA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +510,7 @@
 				AA0CCC831C60F131002651EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA0CCC841C60F131002651EA /* Build configuration list for PBXNativeTarget "ThreeClassTableViewTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +519,7 @@
 				AA0CCC861C60F131002651EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA0CCC871C60F131002651EA /* Build configuration list for PBXNativeTarget "ThreeClassTableViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +528,7 @@
 				AA0CCC891C60F131002651EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
