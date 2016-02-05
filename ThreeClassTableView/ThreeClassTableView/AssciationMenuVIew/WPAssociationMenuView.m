@@ -168,19 +168,98 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    NSInteger __block count;
+    [tables enumerateObjectsUsingBlock:^(UITableView *table, NSUInteger idx, BOOL *stop) {
+        if (table == tableView) {
+            switch (idx) {
+                case 0:
+                    count = [_delegate assciationMenuViewCountForClass_1:self];
+                    break;
+                case 1:
+                    count = [_delegate assciationMenuViewCountForClass_2:self atClass_1:sels[0]];
+                    break;
+                case 2:
+                    count = [_delegate assciationMenuViewCountForClass_3:self atClass_1:sels[0] class_2:sels[1]];
+                    break;
+                default:
+                    break;
+            }
+            *stop = YES;
+        }
+        
+    }];
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:WPAssociationCellID forIndexPath:indexPath];
-    cell.textLabel.text = @"test";
-    return cell;
+    if(tableView == [tables objectAtIndex:0]){
+        cell.textLabel.text = [_delegate assciationMenuView:self titleForClass_1:indexPath.row];
+    }else if(tableView == [tables objectAtIndex:1]){
+        cell.textLabel.text = [_delegate assciationMenuView:self titleForClass_1:((UITableView*)tables[0]).indexPathForSelectedRow.row class_2:indexPath.row];
+    }else if(tableView == [tables objectAtIndex:2]){
+        cell.textLabel.text = [_delegate assciationMenuView:self titleForClass_1:((UITableView*)tables[0]).indexPathForSelectedRow.row class_2:((UITableView*)tables[1]).indexPathForSelectedRow.row class_3:indexPath.row];
+    }     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // 保存选中项
    [self saveSels];
+    UITableView *t0 = [tables objectAtIndex:0];
+    UITableView *t1 = [tables objectAtIndex:1];
+    UITableView *t2 = [tables objectAtIndex:2];
+    BOOL isNexClass = true;
+    if(tableView == t0){
+        if([self.delegate respondsToSelector:@selector(assciationMenuView:idxChooseInClass1:)]) {
+            isNexClass = [_delegate assciationMenuView:self idxChooseInClass1:indexPath.row];
+        }
+        if(isNexClass) {
+            [t1 reloadData];
+            if(!t1.superview) {
+                [bgView addSubview:t1];
+            }
+            if(t2.superview) {
+                [t2 removeFromSuperview];
+            }
+//            [self adjustTableViews];
+        }else{
+            if(t1.superview) {
+                [t1 removeFromSuperview];
+            }
+            if(t2.superview) {
+                [t2 removeFromSuperview];
+            }
+//            [self saveSels];
+            [self dismissMenu];
+        }
+    }else if(tableView == t1) {
+        if([self.delegate respondsToSelector:@selector(assciationMenuView:idxChooseInClass1:class2:)]) {
+            isNexClass = [_delegate assciationMenuView:self idxChooseInClass1:t0.indexPathForSelectedRow.row class2:indexPath.row];
+        }
+        if(isNexClass){
+            [t2 reloadData];
+            if(!t2.superview) {
+                [bgView addSubview:t2];
+            }
+//            [self adjustTableViews];
+        }else{
+            if(t2.superview) {
+                [t2 removeFromSuperview];
+            }
+//            [self saveSels];
+            [self dismissMenu];
+        }
+    }else if(tableView == t2) {
+        if([self.delegate respondsToSelector:@selector(assciationMenuView:idxChooseInClass1:class2:class3:)]) {
+            isNexClass = [_delegate assciationMenuView:self idxChooseInClass1:t0.indexPathForSelectedRow.row class2:t1.indexPathForSelectedRow.row class3:indexPath.row];
+        }
+        if(isNexClass) {
+//            [self saveSels];
+            [self dismissMenu];
+        }
+    }
+
     
     
 }
