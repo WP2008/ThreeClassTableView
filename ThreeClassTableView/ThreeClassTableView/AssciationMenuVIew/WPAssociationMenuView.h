@@ -104,6 +104,27 @@
 @property (nonatomic, weak) id<WPAssociationMenuViewDelegate> delegate;
 /** 选择时可以旋转 180 度 ^ */
 @property (nonatomic, weak) UIView *transformView;
+/** 是否正在显示的标记 */
+@property (nonatomic, readonly)BOOL isShow;
+
+/**
+ *  便利构造器
+ *
+ *  默认 与屏幕同宽  高 200
+ *  @param delegate 代理
+ *  @return menuView对象
+ */
++ (instancetype)menuViewWithDelegate:(id<WPAssociationMenuViewDelegate>)delegate;
+/**
+ *  便利构造器
+ *
+ *  @param size     显示的尺寸   默认 与屏幕同宽  高 300
+ *  @param delegate 代理
+ *  @return menuView对象
+ */
++ (instancetype)menuViewWithSize:(CGSize)size delegate:(id<WPAssociationMenuViewDelegate>)delegate;
+
+
 /**
  *  设置选中项，default -1 未选中
  *
@@ -121,5 +142,6 @@
 
 /** 隐藏菜单 */
 - (void)dismissMenu;
+
 
 @end

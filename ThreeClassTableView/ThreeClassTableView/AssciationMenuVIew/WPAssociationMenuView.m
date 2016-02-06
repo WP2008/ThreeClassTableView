@@ -7,6 +7,14 @@
 //
 
 #import "WPAssociationMenuView.h"
+#undef  kScreenWidth
+#define kScreenWidth ([UIScreen mainScreen].bounds.size.width) // 获取屏幕宽度
+#undef  kScreenHeight
+#define kScreenHeight ([UIScreen mainScreen].bounds.size.height) // 获取屏幕高度
+
+#undef  kDefaultHeight
+#define kDefaultHeight 300
+
 
 static NSString * const WPAssociationCellID = @"WPAssociationCellID";
 
@@ -18,6 +26,8 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
     /** 背景View */
     UIView *bgView;
 }
+
+@property (nonatomic, assign)BOOL isShow;
 
 @end
 
@@ -59,11 +69,13 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
     self.userInteractionEnabled = YES;
     
     bgView = [[UIView alloc]init];
-    bgView.backgroundColor = [UIColor blueColor];
+    bgView.backgroundColor = [UIColor clearColor];
     bgView.userInteractionEnabled = YES;
     [bgView addSubview:tables.firstObject];
 
 }
+
+
 
 #pragma mark - privateMathod
 - (void)layoutSubviews {
@@ -120,6 +132,22 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
 }
 
 #pragma mark - publicMathod
+
++ (instancetype)menuViewWithDelegate:(id<WPAssociationMenuViewDelegate>)delegate {
+  return  [self menuViewWithSize:CGSizeMake(kScreenWidth, kDefaultHeight) delegate:delegate];
+}
+
++ (instancetype)menuViewWithSize:(CGSize)size delegate:(id<WPAssociationMenuViewDelegate>)delegate {
+   
+    WPAssociationMenuView *menuView = [[self alloc]init];
+    CGRect frame      = {CGPointZero,size};
+    menuView.frame    = frame;
+    menuView.delegate = delegate;
+    return menuView;
+}
+
+
+
 - (void)setSelectIndexForClass1:(NSInteger)idx_1 class2:(NSInteger)idx_2 class3:(NSInteger)idx_3 {
     sels[0] = idx_1;
     sels[1] = idx_2;
@@ -127,6 +155,7 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
 }
 
 - (void)showMenuAsDrawDownView:(UIView *)view {
+    self.isShow = YES;
     CGRect showFrame = self.frame;
     showFrame.origin.y = view.frame.origin.y + view.frame.size.height;
     self.frame = showFrame;
@@ -148,6 +177,7 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
 }
 
 - (void)dismissMenu {
+    self.isShow = NO;
     if(self.superview) {
         [UIView animateWithDuration:0.25f animations:^{
             self.alpha = 0.0f;
@@ -203,18 +233,24 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
 }
 
 #pragma mark - UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // 保存选中项
-   [self saveSels];
+    // 保存选中项 用于代理中的 numberOfRowsInSection
+    [self saveSels];
     UITableView *t0 = [tables objectAtIndex:0];
     UITableView *t1 = [tables objectAtIndex:1];
     UITableView *t2 = [tables objectAtIndex:2];
+    // 是否显示下一级菜单
     BOOL isNexClass = true;
+    
     if(tableView == t0){
+        // 点击第一个table
         if([self.delegate respondsToSelector:@selector(assciationMenuView:idxChooseInClass1:)]) {
             isNexClass = [_delegate assciationMenuView:self idxChooseInClass1:indexPath.row];
         }
+        // 显示下一级table
         if(isNexClass) {
+            // 刷新第二个 tableView  移除第三个view
             [t1 reloadData];
             if(!t1.superview) {
                 [bgView addSubview:t1];
@@ -222,7 +258,7 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
             if(t2.superview) {
                 [t2 removeFromSuperview];
             }
-//            [self adjustTableViews];
+            [self setNeedsLayout];
         }else{
             if(t1.superview) {
                 [t1 removeFromSuperview];
@@ -230,10 +266,11 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
             if(t2.superview) {
                 [t2 removeFromSuperview];
             }
-//            [self saveSels];
+
             [self dismissMenu];
         }
     }else if(tableView == t1) {
+          // 点击第二个table
         if([self.delegate respondsToSelector:@selector(assciationMenuView:idxChooseInClass1:class2:)]) {
             isNexClass = [_delegate assciationMenuView:self idxChooseInClass1:t0.indexPathForSelectedRow.row class2:indexPath.row];
         }
@@ -242,25 +279,23 @@ static NSString * const WPAssociationCellID = @"WPAssociationCellID";
             if(!t2.superview) {
                 [bgView addSubview:t2];
             }
-//            [self adjustTableViews];
+            [self setNeedsLayout];
         }else{
             if(t2.superview) {
                 [t2 removeFromSuperview];
             }
-//            [self saveSels];
             [self dismissMenu];
         }
     }else if(tableView == t2) {
+          // 点击第三个table
         if([self.delegate respondsToSelector:@selector(assciationMenuView:idxChooseInClass1:class2:class3:)]) {
             isNexClass = [_delegate assciationMenuView:self idxChooseInClass1:t0.indexPathForSelectedRow.row class2:t1.indexPathForSelectedRow.row class3:indexPath.row];
         }
         if(isNexClass) {
-//            [self saveSels];
             [self dismissMenu];
         }
     }
 
-    
     
 }
 

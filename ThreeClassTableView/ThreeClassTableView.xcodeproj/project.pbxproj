@@ -16,6 +16,7 @@
 		AA0CCC721C60F130002651EA /* ThreeClassTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0CCC711C60F130002651EA /* ThreeClassTableViewTests.m */; };
 		AA0CCC7D1C60F131002651EA /* ThreeClassTableViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0CCC7C1C60F131002651EA /* ThreeClassTableViewUITests.m */; };
 		AA0CCC8D1C60F8CF002651EA /* WPAssociationMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0CCC8C1C60F8CF002651EA /* WPAssociationMenuView.m */; };
+		AAE85EB81C65B83B00E3D72C /* DataSoruceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE85EB71C65B83B00E3D72C /* DataSoruceModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		AA0CCC7E1C60F131002651EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA0CCC8B1C60F8CF002651EA /* WPAssociationMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAssociationMenuView.h; sourceTree = "<group>"; };
 		AA0CCC8C1C60F8CF002651EA /* WPAssociationMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPAssociationMenuView.m; sourceTree = "<group>"; };
+		AAE85EB61C65B83B00E3D72C /* DataSoruceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSoruceModel.h; sourceTree = "<group>"; };
+		AAE85EB71C65B83B00E3D72C /* DataSoruceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSoruceModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				AA0CCC5B1C60F130002651EA /* AppDelegate.m */,
 				AA0CCC5D1C60F130002651EA /* ViewController.h */,
 				AA0CCC5E1C60F130002651EA /* ViewController.m */,
+				AAE85EB61C65B83B00E3D72C /* DataSoruceModel.h */,
+				AAE85EB71C65B83B00E3D72C /* DataSoruceModel.m */,
 				AA0CCC601C60F130002651EA /* Main.storyboard */,
 				AA0CCC631C60F130002651EA /* Assets.xcassets */,
 				AA0CCC651C60F130002651EA /* LaunchScreen.storyboard */,
@@ -283,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE85EB81C65B83B00E3D72C /* DataSoruceModel.m in Sources */,
 				AA0CCC5F1C60F130002651EA /* ViewController.m in Sources */,
 				AA0CCC5C1C60F130002651EA /* AppDelegate.m in Sources */,
 				AA0CCC8D1C60F8CF002651EA /* WPAssociationMenuView.m in Sources */,

@@ -24,6 +24,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Mba-tZ-p4h"/>
                                     <constraint firstAttribute="width" constant="280" id="yy7-3Z-4yX"/>
                                 </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                 <state key="normal" title="点我弹出菜单" image="expandableImage"/>
                                 <connections>
                                     <action selector="clickBtnShowMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pKj-0a-OVB"/>
